@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
 			redirect_to  user_url(user)
 
 		else
-			flash[:notice] = "Invalid information."
+			flash.now[:notice] = "Invalid information."
 			render 'new'
 		end
 

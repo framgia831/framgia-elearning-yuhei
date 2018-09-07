@@ -1,9 +1,10 @@
-// Place all the styles related to the users controller here.
+// Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body.login {
+body.signup {
 	background-color: #eee;
-    font-family: 'Baloo Tammudu', cursive;
+	background-repeat : repeat;
+	font-family: 'Baloo Tammudu', cursive;
 }
 
 .box5 {
@@ -16,4 +17,3 @@ body.login {
     margin: 0; 
     padding: 0;
 }
-

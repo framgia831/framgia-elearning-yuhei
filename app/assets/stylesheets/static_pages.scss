@@ -1,9 +1,10 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-body {
+body.home {
 	background-image: url("sora_006.jpg");
 	background-size: cover; 
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 div.jumbotron {
@@ -16,4 +17,8 @@ button.btn-primary {
     color: #fff;
     background-color: #ffc169;
     border-color: #ffc169;
+    margin: 0 auto;
 }
+
+
+

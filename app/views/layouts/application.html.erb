@@ -7,10 +7,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+    <link href="https://fonts.googleapis.com/css?family=Baloo+Tammudu|Josefin+Sans" rel="stylesheet">
 
-  <body>
+  </head>
+  <body class="<%= yield(:body_class) %>">
     <%= render "layouts/header" %>
+    <div class="container pt-4">
+      <% if notice %>
+      <div class="alert alert-primary">
+      <%= notice %>
+      </div>
+      <% end %>
     <%= yield %>
   </body>
 </html>

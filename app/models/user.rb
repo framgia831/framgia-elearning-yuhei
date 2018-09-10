@@ -8,4 +8,6 @@ class User < ApplicationRecord
 					  format: { with: EMAIL_REGEX },
 					  uniqueness: true
 
+  	mount_uploader :image, PictureUploader
+
 end

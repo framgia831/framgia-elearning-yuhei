@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body.login {
 	background-color: #eee;
-    font-family: 'Baloo Tammudu', cursive;
+	font-family: 'Josefin Sans', sans-serif;
 }
 
 .box5 {
@@ -15,5 +15,25 @@ body.login {
 .box5 p {
     margin: 0; 
     padding: 0;
+}
+
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    color: #6091d3;/*文字色*/
+    background: #FFF;
+    border: solid 3px #6091d3;/*線*/
+    border-radius: 10px;/*角の丸み*/
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+
+img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* この一行を追加するだけ！ */
 }
 

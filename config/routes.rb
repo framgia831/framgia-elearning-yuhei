@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 	delete "/logout", to: "sessions#destroy"
 	
  	resources :users, except: :new
+	resources :relationships, only: [:create, :destroy]
+ 	
 	get "/signup", to: "users#new"
 
  

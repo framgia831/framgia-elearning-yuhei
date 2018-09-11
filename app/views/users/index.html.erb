@@ -1,2 +1,12 @@
 <!-- index.html.erb -->
-userlist
+<h1 class="text-center">Users</h1>
+<hr>
+<div class="row">
+	<% @users.each do |user| %>
+		<div class="col-md-4">
+			<h5><%= link_to user.name, user_path(user) %>
+			</h5>
+		</div>
+	<% end %>	
+	
+</div>

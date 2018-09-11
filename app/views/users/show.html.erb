@@ -1,14 +1,52 @@
 <!-- show.html.erb -->
 <div class="row justify-content-around"> 
-  <div class="col-lg-8">activity</div>
-  <div class="col-lg-4">
+  <div class="col-8 ">
+  	<table class="table table-hover">
+  		<thead>
+  			<tr>
+  				<th scope="col">#</th>
+  				<th scope="col">#</th>
+  				<th scope="col">#</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  			<tr>
+  				<th scope="row">1</th>
+  				<td>#</td>
+  				<td>#</td>
+  			</tr>
+  			<tr>
+  				<th scope="row">2</th>
+  				<td>#</td>
+  				<td>#</td>
+  			</tr>
+  		</tbody>
+  	</table>
+
+  </div>
+  <div class="col-4">
   	<div class="box2 row">
   		<div class="img col-xs-6">
  		<%= image_tag(@user.image.url, class: 'mw-5') if @user.image? %>
+ 		<hr>
+		
+		<% if current_user != @user %>
+			<% if relationship = current_user.relationship(@user)%>
+				<%= button_to "Unfollow", relationship_path(relationship), method: :delete, class: 'btn btn-default btn-block' %>
+			<% else %>
+				<%= button_to "Follow", relationships_path, params: {followed_id: @user.id}, class: 'btn btn-success btn-block' %>
+			<% end %>
+		<% else %>	
+			<%= link_to "Edit", edit_user_path, type: "button", class: "btn btn-default btn-block" %>
+		<% end %>	
  		</div>	
- 		<div class="col-xs-3 offset-md-3">
-  		<h1><%= link_to @user.name, edit_user_path %></h1>
+ 		<div class="col-xs-3 offset-md-3 ">
+  		<h1><%= @user.name %></h1>
 		<p><%= @user.email %></p>
+		<hr>
+			<h6><%= @user.followers.count %> followers</h6>
+			<h6><%= @user.following.count %> following</h6>
+
   		</div>
   	</div>
 

@@ -51,7 +51,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
     end
 
-
     def require_login
       unless current_user 
         flash[:notice] = "Please log in."

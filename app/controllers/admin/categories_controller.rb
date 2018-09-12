@@ -1,4 +1,5 @@
 class Admin::CategoriesController < ApplicationController
+	before_action :admin_user
 
 	def index
 		@categories = Category.all
@@ -14,7 +15,7 @@ class Admin::CategoriesController < ApplicationController
 	    if @category.save
 	    redirect_to admin_categories_path
 	    else
-	      render 'categorys/new'
+	      render 'new'
 	    end
   	end
 
@@ -29,7 +30,7 @@ class Admin::CategoriesController < ApplicationController
 	      flash[:notice] = "Success"
 	      redirect_to admin_categories_path
 	    else
-	      render "categorys/edit" 
+	      render "edit" 
 	    end
 	 end
 
@@ -44,10 +45,15 @@ class Admin::CategoriesController < ApplicationController
 
 	private
 		def admin_user
-			redirect_to(root_url) unless current_user.Admin?
+			unless current_user.admin?
+				flash[:notice] = "You are not admin."
+				redirect_to(root_url) 
+			end	
 		end
 
 	    def category_params
-	      params.require(:category).permit(:title, :description)
+	     	params.require(:category).permit(:title, :description)
 	    end	
+
+	  
 end

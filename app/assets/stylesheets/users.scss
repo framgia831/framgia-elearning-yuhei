@@ -2,33 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body.login {
-	background-color: #eee;
-	font-family: 'Josefin Sans', sans-serif;
-}
-
-.box5 {
-    padding: 0.5em 1em;
-    margin: 4em 8em;
-    border: double 5px #224c76;
-    background-color: #fff;
-}
-.box5 p {
-    margin: 0; 
-    padding: 0;
-}
-
-.box2 {
-    padding: 0.5em 1em;
-    margin: 2em 0;
-    font-weight: bold;
-    color: black;/*文字色*/
-    background: #FFF;
-    border: solid 3px black;/*線*/
-    border-radius: 10px;/*角の丸み*/
-}
-.box2 p {
-    margin: 0; 
-    padding: 0;
+    background-color: #eee;
+    font-family: 'Josefin Sans', sans-serif;
 }
 
 img {
@@ -36,4 +11,15 @@ img {
   height: 100px;
   object-fit: cover; /* この一行を追加するだけ！ */
 }
+
+
+// .box2 {
+//     padding: 0.5em 1em;
+//     font-weight: bold;
+//     color: black;/*文字色*/
+//     background: #FFF;
+//     border: solid 3px black;/*線*/
+//     border-radius: 10px;/*角の丸み*/
+// }
+
 

@@ -22,12 +22,14 @@
 	    <tbody>
 	        <tr>
 	            <th scope="row"><%= @i %></th>
-	            <td><%= category.title %></td>
+	            <td>
+	            	<%= link_to "#{category.title}",  admin_category_words_path(category) %>
+	            </td>
 	            <td><%= category.description %></td>
 	            <td>
 	            	<%= link_to "edit", edit_admin_category_path(category) %>
 	            	/
-	            	<%= link_to "delelete", admin_category_path(category), method: :delete %>
+	            	<%= link_to "delete", admin_category_path(category), method: :delete %>
 	            		
 	            </td>
 

@@ -32,18 +32,13 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-
-    # @user.name = params[:name]
-    # @user.email = params[:email]
-    # @user.image = params[:image]
-
     if @user.update_attributes(user_params)
-      # @user.save
       flash[:notice] = "Success"
       redirect_to("/users/#{@user.id}")
     else
       render("users/edit")
     end
+    
   end
 
   private

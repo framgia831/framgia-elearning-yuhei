@@ -11,22 +11,27 @@
 			</ul>
 			</div>
 		<% end %> 
-	<div class="row">
+	<div class="row" type="form">
 		<div class="col">
 			<%= f.label :word %>
 			<%= f.text_field :content, class: "form-control" %>
 		</div>
-		<div class="col">
+		<div class="col radio">
 			<%= f.label :choices %>
-			<%= f.fields_for :choices do |b| %>
-			<%= b.text_field :content, class: "form-control" %>
 			<br>
-			<%= f.fields_for :choices do |b| %>
-			<%= b.text_field :content, class: "form-control" %>
+				<%= f.fields_for :choices do |b| %>
+				<%= b.check_box :correct %>
+				<%= b.text_field :content, class: "form-control" %>
+			
 			<br>
+				<%= f.fields_for :choices do |b| %>
+				<%= b.check_box :correct %>
+				<%= b.text_field :content, class: "form-control" %>
 
-			<%= f.fields_for :choices do |b| %>
-			<%= b.text_field :content, class: "form-control" %>
+			<br>
+				<%= f.fields_for :choices do |b| %>
+				<%= b.check_box :correct %>
+				<%= b.text_field :content, class: "form-control" %>
 			
 			<% end %>
 			<% end %>

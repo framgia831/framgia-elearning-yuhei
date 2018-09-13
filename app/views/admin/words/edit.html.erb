@@ -20,8 +20,9 @@
 
 			<div class="col">
 				<%= f.label :choices %>
-
+				<br>
 				<%= f.fields_for :choices do |b| %>
+				<%= b.check_box :correct %>
 				<%= b.text_field :content, class: "form-control" %>
 				<% end %>
 			</div>			

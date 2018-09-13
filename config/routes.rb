@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 	get "/signup", to: "users#new"
 
 	namespace :admin do
-	resources :categories
-end
+		resources :categories, shallow: true do
+			resources :words
+		end	
+	end
  
 end

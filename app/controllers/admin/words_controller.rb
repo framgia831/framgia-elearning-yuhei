@@ -3,19 +3,19 @@ class Admin::WordsController < ApplicationController
 
 	def index
 		@category = Category.find(params[:category_id])
-		@words = Word.all
-		@i = 1
+		@words = @category.words
 	end
 
 	def new
+		@category = Category.find(params[:category_id])
    		@word = Word.new
-   		@word.choices.build
+   		3.times {@word.choices.build}
   	end
 
   	def create
-    	@word = Word.new(word_params)
-    	@word.category_id = params[:category_id]
-    	
+    	category = Category.find(params[:category_id])
+		@word = category.words.build(word_params)
+
 	    if @word.save
 	    redirect_to admin_category_words_path(@word.category_id)
 	    else
@@ -30,7 +30,6 @@ class Admin::WordsController < ApplicationController
 
   	def edit
     	@word = Word.find(params[:id])
-   		# @word.choices.build
   	end
   
   	def update

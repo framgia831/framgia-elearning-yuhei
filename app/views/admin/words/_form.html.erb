@@ -1,0 +1,34 @@
+<!-- _form.html.erb -->
+<div class="box5">
+	<h1 class="text-center">Add Word</h1>
+		<%= form_for [:admin, @category, @word] do |f| %>
+			<% if @word.errors.any? %>
+				<div class="alert alert-danger">
+				<ul class="m-0">
+					<% @word.errors.full_messages.each do |msg| %>
+						<li><%= msg %></li>
+					<% end %>
+				</ul>
+				</div>
+			<% end %> 
+			<div class="row" type="form">
+				<div class="col">
+					<%= f.label :word %>
+					<%= f.text_field :content, class: "form-control" %>
+				</div>
+				<div class="col">
+					<%= f.label :choices %>
+						<%= f.fields_for :choices do |b| %>
+							<%= b.text_field :content, class: "form-control" %>
+							<%= b.label :correct %>
+								<%= b.check_box :correct %>
+						
+						<% end %>
+				</div>		
+
+				<%= f.submit "Add Word", class: "btn btn-primary text-center form-control mt-5" %>
+
+			</div>
+		<% end %> 
+	
+</div>

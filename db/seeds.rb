@@ -23,19 +23,16 @@ User.create!( name: "admin",
                )
 end
 
-30.times do |n|
-  content = Faker::HarryPotter.character
-  content = Faker::HarryPotter.spell
-  category = Category.create( title: "Test #{n+1}",
-                    description: "description #{n+1}" 
-                  )
+15.times do |n|
+  category = Category.create( title: Faker::HarryPotter.unique.location,
+                              description: Faker::HarryPotter.quote
+                            )
 
   5.times do |i|
-    word = category.words.build(content: "content#{n+1}")
+    word = category.words.build(content: Faker::HarryPotter.unique.character)
 
     3.times do |x|
-      word.choices.build(content: content
-                         )
+      word.choices.build(content: Faker::HarryPotter.spell)
     end
 
     r = rand(0..2)

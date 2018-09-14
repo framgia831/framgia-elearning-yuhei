@@ -13,7 +13,7 @@ User.create!( name: "admin",
             )
 
 5.times do |n|
-  name = Faker::Name.name
+  name = Faker::Pokemon.name
   email = Faker::Internet.email
   password = "password"
   User.create!(	name: name,
@@ -23,28 +23,24 @@ User.create!( name: "admin",
                )
 end
 
-5.times do |i|
-  Category.create!( title: "Test #{i}",
-                    description: "description #{i}" 
-                  )
+15.times do |n|
+  category = Category.create( title: Faker::HarryPotter.unique.location,
+                              description: Faker::HarryPotter.quote
+                            )
+
+  5.times do |i|
+    word = category.words.build(content: Faker::HarryPotter.unique.character)
+
+    3.times do |x|
+      word.choices.build(content: Faker::HarryPotter.spell)
+    end
+
+    r = rand(0..2)
+    word.choices[r].correct = true
+
+    word.save
+
+
+  end  
 end
 
-5.times do |i|
-  Word.create!( category_id: i+1,
-                content: "content #{i}" 
-              )
-end
-
-5.times do |k|
-  2.times do |i|
-    Choice.create!( word_id: k+1,
-                    content: "false",
-                    correct: nil 
-                    )
-  end
-
-  Choice.create!( word_id: k+1,
-                    content: "true",
-                    correct: true
-                    )
-end  

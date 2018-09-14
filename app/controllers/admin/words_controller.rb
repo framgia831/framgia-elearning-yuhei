@@ -13,8 +13,8 @@ class Admin::WordsController < ApplicationController
   	end
 
   	def create
-    	category = Category.find(params[:category_id])
-		@word = category.words.build(word_params)
+    	@category = Category.find(params[:category_id])
+		@word = @category.words.build(word_params)
 
 	    if @word.save
 	    redirect_to admin_category_words_path(@word.category_id)

@@ -21,12 +21,16 @@ User.create!( name: "admin",
                	password: password,
                	password_confirmation: password
                )
+
 end
 
 15.times do |n|
   category = Category.create( title: Faker::HarryPotter.unique.location,
                               description: Faker::HarryPotter.quote
                             )
+  3.times do |i|
+  Lesson.create( category_id: rand(1..5))
+  end 
 
   5.times do |i|
     word = category.words.build(content: Faker::HarryPotter.unique.character)
@@ -43,4 +47,8 @@ end
 
   end  
 end
+
+  Lesson.create( category_id: 1,
+                 user_id: 1
+              )
 

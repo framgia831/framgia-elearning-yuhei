@@ -17,9 +17,12 @@
 	        <tr>
 	            <th scope="row"><%= i+1 %></th>
 	            <td>
-	            	<%= link_to "#{category.title}", new_category_answer_path(category) %>
+	            	<%= category.title %>
 	            </td>
 	            <td><%= category.description %></td>
+	            <td>
+	            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block mb-3' %>
+	            </td>
 	        </tr>
 	    </tbody> 
 	    

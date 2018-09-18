@@ -8,11 +8,11 @@ Rails.application.routes.draw do
  	resources :users, except: :new
 	resources :relationships, only: [:create, :destroy]
 
- 	resources :categories, only: [:index], shallow: true do
- 		resources :lessons, only: [:index, :create] 
- 		resources :answers, only:[:create, :new, :index]
- 
- 	end	
+ 	resources :categories, only: [:index]
+	resources :lessons, only: [:index, :create], shallow: true do 
+		resources :answers, only:[:create, :new, :index]
+
+	end	
 
 	namespace :admin do
 		resources :categories, shallow: true do

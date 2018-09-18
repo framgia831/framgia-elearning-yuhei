@@ -1,7 +1,7 @@
 class User < ApplicationRecord
 	has_secure_password
 	has_many :lessons, dependent: :delete_all
-	# has_many :categories, throuth: :lessons
+	has_many :categories, through: :lessons
 
 	
 	validates :name, presence: true

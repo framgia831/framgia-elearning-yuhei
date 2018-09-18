@@ -8,7 +8,7 @@ Rails.application.routes.draw do
  	resources :users, except: :new
 	resources :relationships, only: [:create, :destroy]
 
- 	resources :categories, only: [:index]
+ 	resources :categories, only: [:index, :show]
 	resources :lessons, only: [:index, :create], shallow: true do 
 		resources :answers, only:[:create, :new, :index]
 

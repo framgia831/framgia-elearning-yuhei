@@ -1,6 +1,8 @@
 class AnswersController < ApplicationController
 	def new
+		@lesson = Lesson.find(params[:lesson_id])
 		@category = @lesson.category
+	
 		@word = (@category.words - @lesson.words).first 
 	end 
 

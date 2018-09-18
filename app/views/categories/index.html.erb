@@ -12,25 +12,25 @@
 	            <th scope="col">description</th>
 	        </tr>
 	    </thead>
-	<% @categories_all.each_with_index do |category, i| %>
 	    <tbody>
-	        <tr>
-	            <th scope="row"><%= i+1 %></th>
-	            <td>
-	            	<%= category.title %>
-	            </td>
-	            <td><%= category.description %></td>
-	            <td>
-	            	<% if  @categories.include?(category) %>
-	            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block mb-3' %>
-	            	<% else %>
-	            	<%= link_to "result", category_path(category), class: 'btn btn btn-block mb-3' %>
-	            	<% end %>
-	            </td>
-	        </tr>
+			<% @categories_all.each_with_index do |category, i| %>
+		        <tr>
+		            <th scope="row"><%= i+1 %></th>
+		            <td>
+		            	<%= category.title %>
+		            </td>
+		            <td><%= category.description %></td>
+		            <td>
+		            	<% if  @categories.include?(category) %>
+		            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block mb-3' %>
+		            	<% else %>
+		            	<%= link_to "result", category_path(category), class: 'btn btn btn-block mb-3' %>
+		            	<% end %>
+		            </td>
+		        </tr>
+			<% end %>		
 	    </tbody> 
 	    
-	<% end %>		
         </table>
 
 </div>

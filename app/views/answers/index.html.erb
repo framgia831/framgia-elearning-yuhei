@@ -13,25 +13,25 @@
 	            <th scope="col">answer</th>
 	        </tr>
 	    </thead>
-	<% @answers.each do |answer| %>
 	    <tbody>
-	        <tr>
-	          	<td>
-	          		<% if answer.choice.correct %>
-	          			<%= fa_icon("grin-beam 3x", text: "OK") %>
-	          		<% else %>
-	          			<%= fa_icon("dizzy 3x", text: "NG") %>
-	          		<% end %>	
-	          	</td>
-	            <td>
-	            	<%= answer.word.content %>
-	            </td>
-	            <td><%= answer.choice.content %></td>
-	            
-	        </tr>
+			<% @answers.each do |answer| %>
+		        <tr>
+		          	<td>
+		          		<% if answer.choice.correct %>
+		          			<%= fa_icon("grin-beam 3x", text: "OK") %>
+		          		<% else %>
+		          			<%= fa_icon("dizzy 3x", text: "NG") %>
+		          		<% end %>	
+		          	</td>
+		            <td>
+		            	<%= answer.word.content %>
+		            </td>
+		            <td><%= answer.choice.content %></td>
+		            
+		        </tr>
+			<% end %>		
 	    </tbody> 
 	    
-	<% end %>		
         </table>
 
 </div>

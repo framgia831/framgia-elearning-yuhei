@@ -1,7 +1,12 @@
 class User < ApplicationRecord
 	has_secure_password
+	has_many :lessons, dependent: :delete_all
+	has_many :categories, through: :lessons
+
+	
 	validates :name, presence: true
 	validates :password, presence: true
+
 	
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence: true,

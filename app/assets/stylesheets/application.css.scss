@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+ @import "font-awesome";
+ @import "font-awesome-sprockets";
+ 
  header {
  	font-family: 'Josefin Sans', sans-serif;
  }

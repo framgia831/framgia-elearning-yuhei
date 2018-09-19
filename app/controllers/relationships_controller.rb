@@ -1,9 +1,11 @@
 class RelationshipsController < ApplicationController
 	def create
-		Relationship.create(
+		relationship = Relationship.create(
 			follower_id: current_user.id,
 			followed_id: params[:followed_id]
 			 )
+		relationship.activity.create(user_id: current_user.id)
+
 		redirect_to user_url(params[:followed_id])
 			
 	end

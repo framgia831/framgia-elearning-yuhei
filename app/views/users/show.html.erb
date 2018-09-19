@@ -30,27 +30,20 @@
     </div>
 
     <div class="col-9 ">
-    	<table class="table table-hover">
-    		<thead>
-    			<tr>
-    				<th scope="col">#</th>
-    				<th scope="col">#</th>
-    				<th scope="col">#</th>
-    			</tr>
-    		</thead>
-    		<tbody>
-    			<tr>
-    				<th scope="row">1</th>
-    				<td>#</td>
-    				<td>#</td>
-    			</tr>
-    			<tr>
-    				<th scope="row">2</th>
-    				<td>#</td>
-    				<td>#</td>
-    			</tr>
-    		</tbody>
-    	</table>
+    	<h3>activities</h3>
+        <% @user.lessons.each do |lesson| %>
+          <div class="media border-top p-2">
+            <div class="media-body row">
+              <div class="img col-md-2">
+                <%= image_tag(@user.image.url) if @user.image? %>
+              </div>
+              <div class="content col-md-10"> 
+                <h5><%= link_to lesson.user.name, user_path(lesson.user) %> leaned <%= lesson.choices.pluck("correct").count(true) %> of <%= lesson.choices.pluck("content").count %> in <%= link_to lesson.category.title, category_path(lesson.category) %>
+                </h5>
+              </div>
+            </div>
+          </div>
+      <% end %> 
     </div>
    
   </div>

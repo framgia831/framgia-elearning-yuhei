@@ -4,6 +4,7 @@ class Lesson < ApplicationRecord
   has_many :answers, dependent: :delete_all
   has_many :words, through: :answers 
   has_many :choices, through: :answers 
+  has_many :activity, as: :action
 
 end
 	

@@ -2,29 +2,35 @@
 
 <div class="container justify-content-around">
     <div class="row"> 
-        <div class="col-9">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">#</th>
-                        <th scope="col">#</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>#</td>
-                        <td>#</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="col-9 ">
+            <h3>activities</h3>
+                <% @actions.each do |action| %>
+                  <div class="media border-top p-2">
+                    <div class="media-body row">
+                      <div class="img col-md-2">
+                        <% if  action.action_type == "Lesson" %>
+                          <%= image_tag(User.find(action.action.user_id).image.url) if User.find(action.action.user_id).image? %>
+                        <% else %>
+                          <%= image_tag(User.find(action.action.followed_id).image.url) if User.find(action.action.followed_id).image? %>
+                        <% end %>  
+                      </div>
+                      <div class="content col-md-10"> 
+                        <% if  action.action_type == "Lesson" %>
+                          <h5>
+                            <%= link_to action.action.user.name, user_path(action.action.user) %> leaned <%= action.action.choices.pluck("correct").count(true) %> of <%= action.action.choices.pluck("content").count %> in <%= link_to action.action.category.title, categories_path %>
+                          </h5>
+                        <% else %>  
+                          <h5>
+                            <%= link_to "YOU", user_path(current_user) %> followed <%= link_to User.find(action.action.followed_id).name, user_path(User.find(action.action.followed_id)) %>
+                          </h5> 
+                        <% end %>
+                        
+                      </div>
+                    </div>
+                  </div>
+                <% end %> 
         </div>
+   
     
         <div class="border border-info col-3 py-2 px-3 rounded">
             <div class="row">

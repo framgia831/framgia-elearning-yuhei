@@ -15,7 +15,6 @@ class AnswersController < ApplicationController
 		@lesson = Lesson.find(params[:lesson_id])
 		@category = @lesson.category
 
-
 		answer = @lesson.answers.build(
 			word_id: params[:word_id],
 			choice_id: params[:choice_id]
@@ -29,7 +28,6 @@ class AnswersController < ApplicationController
     		redirect_to lesson_answers_url(@lesson)
 			
 		end
-	    
 
 
 

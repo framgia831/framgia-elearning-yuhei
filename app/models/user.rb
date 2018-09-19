@@ -30,4 +30,11 @@ class User < ApplicationRecord
 			)	  	
 	end
 
+	def feed
+		ids = following.pluck(:followed_id)
+		ids << id
+
+		Activity.where(user_id: ids)
+	end
+
 end

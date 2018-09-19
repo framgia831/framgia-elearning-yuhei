@@ -17,7 +17,7 @@
                       <div class="content col-md-10"> 
                         <% if  action.action_type == "Lesson" %>
                           <h5>
-                            <%= link_to action.action.user.name, user_path(action.action.user) %> leaned <%= action.action.choices.pluck("correct").count(true) %> of <%= action.action.choices.pluck("content").count %> in <%= link_to action.action.category.title, categories_path %>
+                            <%= link_to action.action.user.name, user_path(action.action.user) %> learned <%= action.action.choices.pluck("correct").count(true) %> of <%= action.action.choices.pluck("content").count %> in <%= link_to action.action.category.title, category_path(action.action.category) %>
                           </h5>
                         <% else %>  
                           <h5>
@@ -39,7 +39,7 @@
                 </div> 
                 <div class="col-md-6">
                     <h1><%= current_user.name %></h1>
-                    <p>Learned xxwords <br> Learned xxlessons</p>
+                    <p>Learned <%= current_user.choices.pluck("correct").count(true) %>words <br> Learned <%= current_user.lessons.count %>lessons</p>
                 </div>
             </div>
         </div>

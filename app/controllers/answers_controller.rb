@@ -24,7 +24,8 @@ class AnswersController < ApplicationController
 		word = (@category.words - @lesson.words).first 
 		if word 
 			redirect_to new_lesson_answer_url(@lesson)
-		else	
+		else
+			@lesson.create_activity(user_id: current_user.id)	
     		redirect_to lesson_answers_url(@lesson)
 			
 		end

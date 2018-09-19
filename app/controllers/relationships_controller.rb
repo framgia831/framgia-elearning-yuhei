@@ -4,10 +4,9 @@ class RelationshipsController < ApplicationController
 			follower_id: current_user.id,
 			followed_id: params[:followed_id]
 			 )
-		relationship.activity.create(user_id: current_user.id)
+		relationship.create_activity(user_id: current_user.id)
 
 		redirect_to user_url(params[:followed_id])
-			
 	end
 
 	def destroy

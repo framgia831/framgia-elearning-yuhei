@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
 	def index
 		@categories_all = Category.all
 	
-
 		@categories = @categories_all - current_user.categories
 	end
 

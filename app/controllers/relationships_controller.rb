@@ -11,8 +11,10 @@ class RelationshipsController < ApplicationController
 
 	def destroy
 		relationship = Relationship.find(params[:id])
+		activity = Activity.where(action_id: params[:id]).find_by(action_type: Relationship)
+		
 		relationship.destroy
-
+		activity.destroy
 		redirect_to user_url(relationship.followed_id)
 	end
 end

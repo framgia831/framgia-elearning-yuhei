@@ -2,26 +2,28 @@
 
 <div class="container justify-content-around">
     <div class="row"> 
-        <div class="col-9 ">
+        <div class="col-9">
             <h3>activities</h3>
-                <% @actions.each do |action| %>
+                <% @activities.each do |activity| %>
                   <div class="media border-top p-2">
                     <div class="media-body row">
                       <div class="img col-md-2">
-                        <% if  action.action_type == "Lesson" %>
-                          <%= image_tag(User.find(action.action.user_id).image.url) if User.find(action.action.user_id).image? %>
+                        <% if User.find(activity.user_id).image? %>
+                            <%= image_tag(User.find(activity.user_id).image.url) %>
                         <% else %>
-                          <%= image_tag(User.find(action.action.followed_id).image.url) if User.find(action.action.followed_id).image? %>
-                        <% end %>  
+                            <%= image_tag('default.jpg') %>
+                        <% end %>    
                       </div>
                       <div class="content col-md-10"> 
-                        <% if  action.action_type == "Lesson" %>
+                        <% if  activity.action.is_a?(Lesson) %>
+                          <% lesson = activity.action %>
                           <h5>
-                            <%= link_to action.action.user.name, user_path(action.action.user) %> learned <%= action.action.choices.pluck("correct").count(true) %> of <%= action.action.choices.pluck("content").count %> in <%= link_to action.action.category.title, category_path(action.action.category) %>
+                            <%= link_to lesson.user.name, user_path(lesson.user) %> learned <%= lesson.choices.pluck("correct").count(true) %> of <%= lesson.choices.pluck("content").count %> in <%= link_to lesson.category.title, category_path(lesson.category) %>
                           </h5>
-                        <% else %>  
+                        <% elsif activity.action.is_a?(Relationship) %>  
+                          <% relationship = activity.action %>
                           <h5>
-                            <%= link_to "YOU", user_path(current_user) %> followed <%= link_to User.find(action.action.followed_id).name, user_path(User.find(action.action.followed_id)) %>
+                            <%= link_to User.find(relationship.follower_id).name, user_path(current_user) %> followed <%= link_to User.find(relationship.followed_id).name, user_path(User.find(relationship.followed_id)) %>
                           </h5> 
                         <% end %>
                         
@@ -32,16 +34,32 @@
         </div>
    
     
-        <div class="border border-info col-3 py-2 px-3 rounded">
-            <div class="row">
-                <div class="img col-md-6">
-                    <%= image_tag(current_user.image.url) if current_user.image? %>
-                </div> 
-                <div class="col-md-6">
-                    <h1><%= current_user.name %></h1>
-                    <p>Learned <%= current_user.choices.pluck("correct").count(true) %>words <br> Learned <%= current_user.lessons.count %>lessons</p>
+        <div class="col-3 py-2 px-3 ">
+            <div class="card">
+                <div class="row card-body">
+                    <div class="img col-md-6">
+                        <% if current_user.image? %>
+                            <%= image_tag(current_user.image.url) %>
+                        <% else %>    
+                            <%= image_tag('default.jpg') %>
+                        <% end %>    
+
+                    </div> 
+                    <div class="col-md-6">
+                        <h3><%= current_user.name %></h3>
+                    
+                    </div>
+                </div>
+            </div>  
+            <div class="card mt-3">
+                <div class="card-body text-center">
+                    <h7>Learned <%= current_user.choices.pluck("correct").count(true) %> words 
+                        <br> 
+                        Learned <%= current_user.lessons.count %> lessons
+                    </h7>
                 </div>
             </div>
+            
         </div>
         
     </div>

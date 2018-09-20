@@ -29,8 +29,6 @@ class AnswersController < ApplicationController
     		redirect_to lesson_answers_url(@lesson)
 			
 		end
-
-
-
 	end
+	
 end

@@ -39,4 +39,13 @@ class User < ApplicationRecord
 		Activity.where(user_id: ids)
 	end
 
+	# def myself
+	# 	if self.id == current_user.id
+	# 		"YOU"
+	# 	else	
+	# 		self.name
+	# 	end	
+		
+	# end
+
 end

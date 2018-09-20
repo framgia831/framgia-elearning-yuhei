@@ -3,7 +3,7 @@
 	<div class="mb-5">
 		<h1 class="text-center"><%= @lesson.category.title %></h1>
 
-		<h3 class="text-right"><%= @lesson.choices.pluck("correct").count(true) %>/<%= @lesson.choices.pluck("content").count %></h3>
+		<h3 class="text-right"><%= @lesson.choices.count + 1 %>/<%= @category.words.count %></h3>
 	</div>
 		<div class="col">
 

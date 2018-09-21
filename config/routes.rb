@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 	post "/login", to: "sessions#create"
 	delete "/logout", to: "sessions#destroy"
 	get "/signup", to: "users#new"
+	get "/words", to: "lessons#word"
 	
  	resources :users, except: :new
 	resources :relationships, only: [:create, :destroy]

@@ -7,4 +7,9 @@ class LessonsController < ApplicationController
 		redirect_to new_lesson_answer_url(@lesson.id)
 	end	
 
+	def word
+		@choices = current_user.choices
+		
+	end
+
 end

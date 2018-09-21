@@ -2,7 +2,10 @@ class UsersController < ApplicationController
   before_action :require_login, except: [:new, :create]
   
 	def index
+
     @users = User.all
+
+    @users_page = User.page(params[:page]).per(3)
 		
 	end
 

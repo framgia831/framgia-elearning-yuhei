@@ -8,23 +8,33 @@
                   <div class="media border-top p-2">
                     <div class="media-body row">
                       <div class="img col-md-2">
-                        <% if User.find(activity.user_id).image? %>
-                            <%= image_tag(User.find(activity.user_id).image.url) %>
-                        <% else %>
-                            <%= image_tag('default.jpg') %>
-                        <% end %>    
+                        <%= user_image(activity.user) %>    
                       </div>
                       <div class="content col-md-10"> 
                         <% if  activity.action.is_a?(Lesson) %>
                           <% lesson = activity.action %>
                           <h5>
-                            <%= link_to lesson.user.name, user_path(lesson.user) %> learned <%= lesson.choices.pluck("correct").count(true) %> of <%= lesson.choices.pluck("content").count %> in <%= link_to lesson.category.title, category_path(lesson.category) %>
+                            <%= link_to lesson.user.name, lesson.user %> 
+                            learned
+                            <%= lesson.correct_answers.size %> 
+                            of 
+                            <%= lesson.choices.size%> 
+                            in 
+                            <%= link_to lesson.category.title, lesson.category %>
                           </h5>
+                          <small class="text-muted">
+                            <%= time_ago_in_words(lesson.created_at) %> ago
+                          </small>
                         <% elsif activity.action.is_a?(Relationship) %>  
                           <% relationship = activity.action %>
                           <h5>
-                            <%= link_to User.find(relationship.follower_id).name, user_path(current_user) %> followed <%= link_to User.find(relationship.followed_id).name, user_path(User.find(relationship.followed_id)) %>
+                            <%= link_to User.find(relationship.follower_id).name, User.find(relationship.follower_id) %> 
+                            followed 
+                            <%= link_to User.find(relationship.followed_id).name, User.find(relationship.followed_id) %>
                           </h5> 
+                           <small class="text-muted">
+                            <%= time_ago_in_words(relationship.created_at) %> ago
+                          </small>
                         <% end %>
                         
                       </div>
@@ -38,12 +48,7 @@
             <div class="card">
                 <div class="row card-body">
                     <div class="img col-md-6">
-                        <% if current_user.image? %>
-                            <%= image_tag(current_user.image.url) %>
-                        <% else %>    
-                            <%= image_tag('default.jpg') %>
-                        <% end %>    
-
+                        <%= user_image(current_user) %>
                     </div> 
                     <div class="col-md-6">
                         <h3><%= current_user.name %></h3>
@@ -53,10 +58,10 @@
             </div>  
             <div class="card mt-3">
                 <div class="card-body text-center">
-                    <h7>Learned <%= current_user.choices.pluck("correct").count(true) %> words 
-                        <br> 
-                        Learned <%= current_user.lessons.count %> lessons
-                    </h7>
+                  <%= link_to "words", words_path, type: "button", class: "btn btn-default btn-md" %>
+
+                    
+                    
                 </div>
             </div>
             

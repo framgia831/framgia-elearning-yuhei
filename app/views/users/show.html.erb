@@ -5,11 +5,7 @@
       <div class="card">
         <div class="card-body row ">
           <div class="img col-md-6 ">
-            <% if current_user.image? %>
-                <%= image_tag(current_user.image.url) %>
-            <% else %>    
-                <%= image_tag('default.jpg') %>
-            <% end %>    
+            <%= user_image(@user) %>    
           </div> 
           <div class="col-md-6">
             <h3><%= @user.name %></h3>
@@ -21,7 +17,7 @@
         </div>
     
           <div class="button text-center mb-3">
-            <% if current_user != @user %>
+            <% unless current_user == @user %>
               <% if relationship = current_user.relationship(@user)%>
                 <%= button_to "Unfollow", relationship_path(relationship), method: :delete, class: 'btn btn-default btn-md' %>
               <% else %>
@@ -40,15 +36,17 @@
           <div class="media border-top p-2">
             <div class="media-body row">
               <div class="img col-md-2">
-                <% if current_user.image? %>
-                    <%= image_tag(current_user.image.url) %>
-                <% else %>    
-                    <%= image_tag('default.jpg') %>
-                <% end %>    
+                <%= user_image(lesson.user) %>    
               </div>
               <div class="content col-md-10"> 
-                <h5><%= link_to lesson.user.name, user_path(lesson.user) %> leaned <%= lesson.choices.pluck("correct").count(true) %> of <%= lesson.choices.pluck("content").count %> in <%= link_to lesson.category.title, category_path(lesson.category) %>
+                <h5><%= link_to lesson.user.name, lesson.user %> leaned 
+                    <%= lesson.correct_answers.size %> of 
+                    <%= lesson.choices.size %> in 
+                    <%= link_to lesson.category.title, lesson.category %>
                 </h5>
+                <small class="text-muted">
+                  <%= time_ago_in_words(lesson.created_at) %> ago
+                </small>
               </div>
             </div>
           </div>

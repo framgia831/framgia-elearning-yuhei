@@ -6,5 +6,8 @@ class Lesson < ApplicationRecord
   has_many :choices, through: :answers 
   has_one :activity, as: :action
 
+  	def correct_answers
+  		choices.where(correct: true)
+	end
 end
 	

@@ -8,6 +8,6 @@ class Lesson < ApplicationRecord
 
   	def correct_answers
   		choices.where(correct: true)
-	end
+	  end
 end
 	

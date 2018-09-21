@@ -1,9 +1,8 @@
 class CategoriesController < ApplicationController
 	def index
-		@categories_all = Category.all
+		@categories_all = Category.all.page(params[:page]).per(4)
 		@categories = @categories_all - current_user.categories
 
-    	@categories_page = Category.page(params[:page]).per(5)
 
 	end
 

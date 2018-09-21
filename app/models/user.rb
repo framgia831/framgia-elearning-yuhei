@@ -2,7 +2,7 @@ class User < ApplicationRecord
 	has_secure_password
 	has_many :lessons, dependent: :delete_all
 	has_many :categories, through: :lessons
-	has_many :choices, through: :lessons
+	has_many :answers, through: :lessons
 	has_many :words, through: :lessons
 
 

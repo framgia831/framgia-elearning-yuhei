@@ -4,43 +4,7 @@
     <div class="row"> 
         <div class="col-9">
             <h3>activities</h3>
-                <% @activities.each do |activity| %>
-                  <div class="media border-top p-2">
-                    <div class="media-body row">
-                      <div class="img col-md-2">
-                        <%= user_image(activity.user) %>    
-                      </div>
-                      <div class="content col-md-10"> 
-                        <% if  activity.action.is_a?(Lesson) %>
-                          <% lesson = activity.action %>
-                          <h5>
-                            <%= link_to lesson.user.name, lesson.user %> 
-                            learned
-                            <%= lesson.correct_answers.size %> 
-                            of 
-                            <%= lesson.choices.size%> 
-                            in 
-                            <%= link_to lesson.category.title, lesson.category %>
-                          </h5>
-                          <small class="text-muted">
-                            <%= time_ago_in_words(lesson.created_at) %> ago
-                          </small>
-                        <% elsif activity.action.is_a?(Relationship) %>  
-                          <% relationship = activity.action %>
-                          <h5>
-                            <%= link_to User.find(relationship.follower_id).name, User.find(relationship.follower_id) %> 
-                            followed 
-                            <%= link_to User.find(relationship.followed_id).name, User.find(relationship.followed_id) %>
-                          </h5> 
-                           <small class="text-muted">
-                            <%= time_ago_in_words(relationship.created_at) %> ago
-                          </small>
-                        <% end %>
-                        
-                      </div>
-                    </div>
-                  </div>
-                <% end %> 
+              <%= render @activities %>
         </div>
    
     
@@ -58,7 +22,7 @@
             </div>  
             <div class="card mt-3">
                 <div class="card-body text-center">
-                  <%= link_to "words", words_path, type: "button", class: "btn btn-default btn-md" %>
+                  <%= link_to "learned #{current_user.words.size}words", words_path, type: "button", class: "btn btn-default btn-md" %>
 
                     
                     
@@ -69,5 +33,6 @@
         
     </div>
 </div>
+
 
 

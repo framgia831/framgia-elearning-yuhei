@@ -32,25 +32,7 @@
 
     <div class="col-9 ">
     	<h3>activities</h3>
-        <% @user.lessons.each do |lesson| %>
-          <div class="media border-top p-2">
-            <div class="media-body row">
-              <div class="img col-md-2">
-                <%= user_image(lesson.user) %>    
-              </div>
-              <div class="content col-md-10"> 
-                <h5><%= link_to lesson.user.name, lesson.user %> leaned 
-                    <%= lesson.correct_answers.size %> of 
-                    <%= lesson.choices.size %> in 
-                    <%= link_to lesson.category.title, lesson.category %>
-                </h5>
-                <small class="text-muted">
-                  <%= time_ago_in_words(lesson.created_at) %> ago
-                </small>
-              </div>
-            </div>
-          </div>
-      <% end %> 
+        <%= render @user.feed%>
     </div>
    
   </div>

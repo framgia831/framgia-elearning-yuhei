@@ -3,7 +3,7 @@
 <div class="container justify-content-around">
     <div class="row"> 
         <div class="col-9">
-            <h3>words</h3>
+            <h3>words-list</h3>
               <table class="table">
                 <thead>
                   <tr>
@@ -13,11 +13,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @choices.each do |choice| %>
+                  <% @answers.each do |answer| %>
                   <tr>
-                    <th><%= choice.word.content %></th>
-                    <th><%= choice.content %></th>
-                    <th><%= choice.content if choice.correct == true %></th>
+                    <th><%= answer.word.content %></th>
+                    <th><%= answer.choice.content %></th>
+                    <th><%= answer.word.correct_answer if answer.choice.correct == false %></th>
                   </tr>
                  <% end %> 
                 </tbody>
@@ -40,16 +40,17 @@
             </div>  
             <div class="card mt-3">
                 <div class="card-body text-center">
-                    <h7>Learned <%= current_user.words.size %> words 
+                    Learned <%= current_user.words.size %> words 
                         <br> 
-                        Learned <%= current_user.lessons.size %> lessons
-                    </h7>
+                    Learned <%= current_user.lessons.size %> lessons
                 </div>
             </div>
             
         </div>
         
     </div>
+        <%= paginate @answers %>
+
 </div>
 
 

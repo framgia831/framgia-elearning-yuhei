@@ -8,8 +8,7 @@ class LessonsController < ApplicationController
 	end	
 
 	def word
-		@choices = current_user.choices
-		
+		@answers = current_user.answers.page(params[:page]).per(7)
 	end
 
 end

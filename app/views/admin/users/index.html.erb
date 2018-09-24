@@ -1,0 +1,46 @@
+	<div class="container">
+		<div class="mb-5">
+	<h1 class="text-center">Users</h1>
+	<div class="text-right"><h3><%= link_to "-> return", admin_categories_path %></h3></div>	
+	</div>
+<div class="row">
+		<table class="table table-hover">
+        <thead>
+	    	<tr>
+	            <th scope="col">user</th>
+	            <th scope="col">email</th>
+	            <th scope="col"></th>
+	            <th scope="col"></th>
+	        </tr>
+	    </thead>
+			<% @users.each do |user| %>
+			    <tbody>
+			        <tr>
+			            <td>
+							<%= link_to user.name, user %>
+			            </td>
+			            <td>
+							<%= user.email %>
+			            </td>
+			            <td>
+			            	<%= "Admin" if user.admin? %>
+			            </td>
+			            <td>
+                			<% if user.admin? %>
+                				<%= link_to "remove", admin_user_path(user), method: :delete %>
+              				<% else %>
+                				<%= link_to "give", admin_user_path(user), method: :patch %>
+              				<% end %>
+			            </td>
+
+			        </tr>
+	    		</tbody> 
+			<% end %>		
+        </table>
+</div>
+<div class="paginate text-center">
+	<%= paginate @users %>
+</div>
+	</div>
+	    
+

@@ -1,8 +1,8 @@
 <!-- _activity.html.erb -->
 <div class="media border-top p-2">
 <div class="media-body row">
-  <div class="img col-md-2">
-    <%= user_image(activity.user) %>    
+  <div class="f-img col-md-2">
+    <%= user_image(activity.user, class: "a-img") %>    
   </div>
   <div class="content col-md-10"> 
     <% if  activity.action.is_a?(Lesson) %>

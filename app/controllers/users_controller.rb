@@ -40,6 +40,20 @@ class UsersController < ApplicationController
     
   end
 
+  def give
+    @user = User.find(params[:id])
+    @user.admin = 1
+    @user.save
+    redirect_to  users_path
+  end
+
+  def remove
+    @user = User.find(params[:id])
+    @user.admin = nil
+    @user.save
+    redirect_to users_path
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)

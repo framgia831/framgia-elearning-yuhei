@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
 	
 	validates :name, presence: true
-	validates :password, presence: true
+	# validates :password
 
 	
 	EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

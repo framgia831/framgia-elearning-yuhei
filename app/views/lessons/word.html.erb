@@ -1,0 +1,56 @@
+<!-- dashbord.html.erb -->
+
+<div class="container justify-content-around">
+    <div class="row"> 
+        <div class="col-9">
+            <h3>words-list</h3>
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Word</th>
+                    <th>Your answer</th>
+                    <th>Correct answer</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @answers.each do |answer| %>
+                  <tr>
+                    <th><%= answer.word.content %></th>
+                    <th><%= answer.choice.content %></th>
+                    <th><%= answer.word.correct_answer if answer.choice.correct == false %></th>
+                  </tr>
+                 <% end %> 
+                </tbody>
+              </table>
+              
+        </div>
+   
+    
+        <div class="col-3 py-2 px-3 ">
+            <div class="card">
+                <div class="row card-body">
+                    <div class="img col-md-6">
+                        <%= user_image(current_user) %>
+                    </div> 
+                    <div class="col-md-6">
+                        <h3><%= current_user.name %></h3>
+                    
+                    </div>
+                </div>
+            </div>  
+            <div class="card mt-3">
+                <div class="card-body text-center">
+                    Learned <%= current_user.words.size %> words 
+                        <br> 
+                    Learned <%= current_user.lessons.size %> lessons
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+        <%= paginate @answers %>
+
+</div>
+
+

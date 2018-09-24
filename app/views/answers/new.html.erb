@@ -1,18 +1,22 @@
 <!-- new.html.erb -->
 <div class="container">
+	<div class="mb-5">
+		<h1 class="text-center"><%= @lesson.category.title %></h1>
 
-	<div class="col">
-
-		<div class="row-xs-6 text-center">
-			<h2><%= @word.content %></h2>
-		</div>
-
-		<div class="row-xs-6">
-			<% @word.choices.each do |choice| %>
-			  <%= button_to choice.content, lesson_answers_path(@lesson), params: {word_id: @word.id, choice_id: choice.id}, class: 'btn btn btn-block mb-3' %>
-			<% end %>
-		</div>
-			
+		<h3 class="text-right"><%= @lesson.choices.count + 1 %>/<%= @category.words.count %></h3>
 	</div>
+		<div class="col">
+
+			<div class="row-xs-6 text-center">
+				<h2><%= @word.content %></h2>
+			</div>
+
+			<div class="row-xs-6">
+				<% @word.choices.each do |choice| %>
+				  <%= button_to choice.content, lesson_answers_path(@lesson), params: {word_id: @word.id, choice_id: choice.id}, class: 'btn btn btn-block mb-3' %>
+				<% end %>
+			</div>
+				
+		</div>
 
 </div>

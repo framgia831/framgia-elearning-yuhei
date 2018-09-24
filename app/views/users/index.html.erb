@@ -1,12 +1,17 @@
 <!-- index.html.erb -->
-<h1 class="text-center">Users</h1>
-<hr>
-<div class="row">
-	<% @users.each do |user| %>
-		<div class="col-md-4">
-			<h5><%= link_to user.name, user_path(user) %>
-			</h5>
-		</div>
-	<% end %>	
-	
+<div class="container">
+	<h1 class="text-center ">Users</h1>
+	<div class="row">
+		<% @users.each do |user| %>
+			<div class="card col-sm-6 my-4">
+				<div class="card-body">
+					<h5><%= link_to user.name, user_path(user) %></h5>
+				</div>
+			</div>
+		<% end %>	
+	</div>
+
+	<div class="paginate text-center">
+		<%= paginate @users %>
+	</div>
 </div>

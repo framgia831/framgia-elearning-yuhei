@@ -15,7 +15,6 @@ class AnswersController < ApplicationController
 		@lesson = Lesson.find(params[:lesson_id])
 		@category = @lesson.category
 
-
 		answer = @lesson.answers.build(
 			word_id: params[:word_id],
 			choice_id: params[:choice_id]
@@ -25,13 +24,11 @@ class AnswersController < ApplicationController
 		word = (@category.words - @lesson.words).first 
 		if word 
 			redirect_to new_lesson_answer_url(@lesson)
-		else	
+		else
+			@lesson.create_activity(user_id: current_user.id)	
     		redirect_to lesson_answers_url(@lesson)
 			
 		end
-	    
-
-
-
 	end
+	
 end

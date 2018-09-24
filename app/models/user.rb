@@ -2,6 +2,11 @@ class User < ApplicationRecord
 	has_secure_password
 	has_many :lessons, dependent: :delete_all
 	has_many :categories, through: :lessons
+	has_many :answers, through: :lessons
+	has_many :words, through: :lessons
+
+
+
 
 	
 	validates :name, presence: true
@@ -29,5 +34,21 @@ class User < ApplicationRecord
 			followed_id: other_user.id
 			)	  	
 	end
+
+	def feed
+		ids = following.pluck(:followed_id)
+		ids << id
+
+		Activity.where(user_id: ids)
+	end
+
+	# def myself
+	# 	if self.id == current_user.id
+	# 		"YOU"
+	# 	else	
+	# 		self.name
+	# 	end	
+		
+	# end
 
 end

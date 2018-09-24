@@ -18,25 +18,28 @@
 
 	        </tr>
 	    </thead>
-	<% @categories.each_with_index do |category, i| %>
-	    <tbody>
-	        <tr>
-	            <th scope="row"><%= i+1 %></th>
-	            <td>
-	            	<%= link_to "#{category.title}",  admin_category_words_path(category) %>
-	            </td>
-	            <td><%= category.description %></td>
-	            <td>
-	            	<%= link_to "edit", edit_admin_category_path(category) %>
-	            	/
-	            	<%= link_to "delete", admin_category_path(category), method: :delete %>
-	            		
-	            </td>
+			<% @categories.each_with_index do |category, i| %>
+			    <tbody>
+			        <tr>
+			            <th scope="row"><%= i+1 %></th>
+			            <td>
+			            	<%= link_to "#{category.title}",  admin_category_words_path(category) %>
+			            </td>
+			            <td><%= category.description %></td>
+			            <td>
+			            	<%= link_to "edit", edit_admin_category_path(category) %>
+			            	/
+			            	<%= link_to "delete", admin_category_path(category), method: :delete %>
+			            		
+			            </td>
 
-	        </tr>
-	    </tbody> 
-	    
-	<% end %>		
+			        </tr>
+	    		</tbody> 
+			<% end %>		
         </table>
+<div class="paginate text-center">
+	<%= paginate @categories_page %>
+</div>
+	    
 
 </div>

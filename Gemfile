@@ -42,7 +42,7 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'font-awesome-rails'
 gem 'font-awesome-sass', '~> 5.3.1'
-
+gem 'kaminari', '~> 0.17.0'
 
 
 group :development, :test do

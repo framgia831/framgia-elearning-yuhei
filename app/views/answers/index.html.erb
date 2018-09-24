@@ -1,7 +1,7 @@
 <div class="mb-5">
-	<h1 class="text-center">Result: <%= @lesson.category.title %></h1>
+	<h1 class="text-center"><%= @lesson.category.title %></h1>
 
-	<h3 class="text-right"><%= @lesson.choices.pluck("correct").count(true) %>/<%= @lesson.choices.pluck("content").count %></h3>
+	<h3 class="text-right">Result: <%= @lesson.choices.pluck("correct").count(true) %>/<%= @lesson.choices.pluck("content").count %></h3>
 </div>
 
 <div class="row">
@@ -18,9 +18,9 @@
 		        <tr>
 		          	<td>
 		          		<% if answer.choice.correct %>
-		          			<%= fa_icon("grin-beam 3x", text: "OK") %>
+		          			<%= fa_icon("grin-beam 2x", text: "OK", class: "fa-green") %>
 		          		<% else %>
-		          			<%= fa_icon("dizzy 3x", text: "NG") %>
+		          			<%= fa_icon("dizzy 2x", text: "NG", class: "fa-red") %>
 		          		<% end %>	
 		          	</td>
 		            <td>

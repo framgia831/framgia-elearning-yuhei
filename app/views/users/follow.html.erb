@@ -1,6 +1,5 @@
-<!-- index.html.erb -->
 <div class="container">
-	<h1 class="text-center ">Users</h1>
+	<h1 class="text-center "><%= @title %></h1>
 	<div class="row">
 		<% @users.each do |user| %>
 			<div class="card col-sm-6 my-4">
@@ -9,7 +8,7 @@
 						<%= user_image(user, class: "a-img") %> 
 					</div>
 					<div class="col-8">
-						<h3><%= link_to user.name, user_path(user) %></h3>
+						<h3><%= link_to user.name, user %></h3>
 					</div>
 				</div>
 			</div>
@@ -20,4 +19,3 @@
 		<%= paginate @users %>
 	</div>
 </div>
-

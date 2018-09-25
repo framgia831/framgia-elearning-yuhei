@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 	get "/words", to: "lessons#word"
 	get "/signup", to: "users#new"
 	
- 	resources :users, except: :new
+ 	resources :users, except: :new, shallow:true do
+ 		get "/followers", to: "users#followers"
+ 		get "/following", to: "users#following"
+ 	end
+ 	
 	resources :relationships, only: [:create, :destroy]
 
  	resources :categories, only: [:index, :show]

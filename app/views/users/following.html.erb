@@ -1,15 +1,14 @@
-<!-- index.html.erb -->
 <div class="container">
-	<h1 class="text-center ">Users</h1>
+	<h1 class="text-center ">Following</h1>
 	<div class="row">
-		<% @users.each do |user| %>
+		<% @following_users.each do |following| %>
 			<div class="card col-sm-6 my-4">
 				<div class="card-body row">
 					<div class="col-4">
-						<%= user_image(user, class: "a-img") %> 
+						<%= user_image(following, class: "a-img") %> 
 					</div>
 					<div class="col-8">
-						<h3><%= link_to user.name, user_path(user) %></h3>
+						<h3><%= link_to following.name, following %></h3>
 					</div>
 				</div>
 			</div>
@@ -17,7 +16,6 @@
 	</div>
 
 	<div class="paginate text-center">
-		<%= paginate @users %>
+		<%= paginate @following_users %>
 	</div>
 </div>
-

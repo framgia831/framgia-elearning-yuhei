@@ -42,6 +42,18 @@ class UsersController < ApplicationController
     
   end
 
+  def followers
+    @followers = User.find(params[:user_id]).followers.page(params[:page]).per(6)
+    ids = @followers.pluck(:follower_id)
+    @follower_users = User.where(id: ids).page(params[:page]).per(6)
+  end
+
+  def following
+    @following = User.find(params[:user_id]).following
+    ids = @following.pluck(:followed_id)
+    @following_users = User.where(id: ids).page(params[:page]).per(6)
+  end
+
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)

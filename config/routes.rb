@@ -10,8 +10,7 @@ Rails.application.routes.draw do
 	get "/signup", to: "users#new"
 	
  	resources :users, except: :new, shallow:true do
- 		get "/followers", to: "users#followers"
- 		get "/following", to: "users#following"
+ 		member { get 'following', 'followers' }
  	end
  	
 	resources :relationships, only: [:create, :destroy]

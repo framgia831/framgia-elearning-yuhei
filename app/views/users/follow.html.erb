@@ -1,14 +1,14 @@
 <div class="container">
-	<h1 class="text-center ">Followers</h1>
+	<h1 class="text-center "><%= @title %></h1>
 	<div class="row">
-		<% @follower_users.each do |follower| %>
+		<% @users.each do |user| %>
 			<div class="card col-sm-6 my-4">
 				<div class="card-body row">
 					<div class="col-4">
-						<%= user_image(follower, class: "a-img") %> 
+						<%= user_image(user, class: "a-img") %> 
 					</div>
 					<div class="col-8">
-						<h3><%= link_to follower.name, follower %></h3>
+						<h3><%= link_to user.name, user %></h3>
 					</div>
 				</div>
 			</div>
@@ -16,6 +16,6 @@
 	</div>
 
 	<div class="paginate text-center">
-		<%= paginate @follower_users %>
+		<%= paginate @users %>
 	</div>
 </div>

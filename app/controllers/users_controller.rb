@@ -43,15 +43,21 @@ class UsersController < ApplicationController
   end
 
   def followers
-    @followers = User.find(params[:user_id]).followers.page(params[:page]).per(6)
+    @followers = User.find(params[:id]).followers.page(params[:page]).per(6)
     ids = @followers.pluck(:follower_id)
-    @follower_users = User.where(id: ids).page(params[:page]).per(6)
+    @users = User.where(id: ids).page(params[:page]).per(6)
+    @title = "Followers List"
+
+    render 'follow'
   end
 
   def following
-    @following = User.find(params[:user_id]).following
+    @following = User.find(params[:id]).following
     ids = @following.pluck(:followed_id)
-    @following_users = User.where(id: ids).page(params[:page]).per(6)
+    @users = User.where(id: ids).page(params[:page]).per(6)
+    @title = "Following List"
+
+    render 'follow'  
   end
 
   private

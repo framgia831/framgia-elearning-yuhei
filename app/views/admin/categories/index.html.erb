@@ -1,48 +1,49 @@
 <!-- index.html.erb -->
 <div class="contaier">
 	<div class="mb-3">
-	<h1 class="text-center">Categories</h1>
-	<div class="text-right"><h3><%= link_to "-> users", admin_users_path %></h3></div>
-	<div class="text-center">
-		<a href= "categories/new" ><button type="button" class="btn btn-primary btn-lg ">Create</button>
-		</a>
-	</div>	
+		<h1 class="text-center">Categories</h1>
+		<div class="text-right">
+			<h3><%= link_to "-> users", admin_users_path %></h3>
+		</div>
+		<div class="text-center">
+		    <%= link_to "New Category",  new_admin_category_path, type: "button", class: 'btn btn-primary btn-lg' %>
+		</div>	
 	</div>
 
-<div class="row">
-		<table class="table table-hover">
-        <thead>
-	    	<tr>
-	            <th scope="col">#</th>
-	            <th scope="col">title</th>
-	            <th scope="col">description</th>
-	            <th scope="col">action</th>
+	<div class="row">
+			<table class="table table-hover">
+	        <thead>
+		    	<tr>
+		            <th scope="col">#</th>
+		            <th scope="col">title</th>
+		            <th scope="col">description</th>
+		            <th scope="col">action</th>
 
-	        </tr>
-	    </thead>
-			<% @categories.each_with_index do |category, i| %>
-			    <tbody>
-			        <tr>
-			            <th scope="row"><%= i+1 %></th>
-			            <td>
-			            	<%= link_to "#{category.title}",  admin_category_words_path(category) %>
-			            </td>
-			            <td><%= category.description %></td>
-			            <td>
-			            	<%= link_to "edit", edit_admin_category_path(category) %>
-			            	/
-			            	<%= link_to "delete", admin_category_path(category), method: :delete %>
-			            		
-			            </td>
+		        </tr>
+		    </thead>
+				<% @categories.each_with_index do |category, i| %>
+				    <tbody>
+				        <tr>
+				            <th scope="row"><%= i+1 %></th>
+				            <td>
+				            	<%= link_to "#{category.title}",  admin_category_words_path(category) %>
+				            </td>
+				            <td><%= category.description %></td>
+				            <td>
+				            	<%= link_to "edit", edit_admin_category_path(category) %>
+				            	/
+				            	<%= link_to "delete", admin_category_path(category), method: :delete %>
+				            		
+				            </td>
 
-			        </tr>
-	    		</tbody> 
-			<% end %>		
-        </table>
-<div class="paginate text-center">
-	<%= paginate @categories %>
-</div>
-	    
+				        </tr>
+		    		</tbody> 
+				<% end %>		
+	        </table>
+	<div class="paginate text-center">
+		<%= paginate @categories %>
+	</div>
+		    
 
-</div>
+	</div>
 </div>

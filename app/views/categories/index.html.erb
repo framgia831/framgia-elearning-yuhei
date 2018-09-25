@@ -1,11 +1,11 @@
-<!-- index.html.erb -->
-<div class="mb-5">
-	<h1 class="text-center">Categories</h1>
-</div>
+<div class="container">
+	<div class="mb-5">
+		<h1 class="text-center">Categories</h1>
+	</div>
 
-<div class="row">
+	<div class="row">
 		<table class="table table-hover">
-        <thead>
+	    <thead>
 	    	<tr>
 	            <th scope="col">#</th>
 	            <th scope="col">title</th>
@@ -31,10 +31,10 @@
 		        </tr>
 			<% end %>		
 	    </tbody> 
+	    </table>
 	    
-        </table>
+	</div>
 	<div class="paginate text-center">
 		<%= paginate @categories_all %>
 	</div>
-	
 </div>

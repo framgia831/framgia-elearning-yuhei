@@ -19,7 +19,9 @@ class UsersController < ApplicationController
       user_params
       )
     if @user.save
-    redirect_to user_url(@user)
+      session[:user_id] = @user.id
+      flash[:notice] = "Hurray! Successfully logged in!"
+      redirect_to  user_url(@user)
     else
       render 'new'
     end
@@ -38,20 +40,6 @@ class UsersController < ApplicationController
       render("users/edit")
     end
     
-  end
-
-  def give
-    @user = User.find(params[:id])
-    @user.admin = 1
-    @user.save
-    redirect_to  users_path
-  end
-
-  def remove
-    @user = User.find(params[:id])
-    @user.admin = nil
-    @user.save
-    redirect_to users_path
   end
 
   private

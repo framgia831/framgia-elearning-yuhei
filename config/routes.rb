@@ -9,15 +9,12 @@ Rails.application.routes.draw do
 	get "/words", to: "lessons#word"
 	get "/signup", to: "users#new"
 	
-	
-	
  	resources :users, except: :new
 	resources :relationships, only: [:create, :destroy]
 
  	resources :categories, only: [:index, :show]
 	resources :lessons, only: [:index, :create], shallow: true do 
 		resources :answers, only:[:create, :new, :index]
-
 	end	
 
 	namespace :admin do

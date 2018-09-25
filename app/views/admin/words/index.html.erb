@@ -1,11 +1,10 @@
 <!-- index.html.erb -->
 <div class="mb-5">
 	<h1 class="text-center">
-	<%= @category.title %>
+		<%= @category.title %>
 	</h1>
 	<div class="text-center">
-		<a href= "words/new" ><button type="button" class="btn btn-primary btn-lg ">Create</button>
-		</a>
+		<%= link_to "New Word", new_admin_category_word_path, type: "button", class: 'btn btn-primary btn-lg' %>
 	</div>	
 </div>
 
@@ -16,7 +15,6 @@
 	            <th scope="col">#</th>
 	            <th scope="col">word</th>
 	            <th scope="col">action</th>
-
 	        </tr>
 	    </thead>
 	<% @words.each_with_index do |word, i| %>

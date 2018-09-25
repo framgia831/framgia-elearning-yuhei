@@ -10,11 +10,12 @@ class SessionsController < ApplicationController
 			flash.now[:notice] = "Invalid information."
 			render 'new'
 		end
-
 	end
+
 	def destroy
 		session.delete(:user_id)
 		flash[:notice] = "Successfully logged out."
 		redirect_to root_url
 	end
+	
 end

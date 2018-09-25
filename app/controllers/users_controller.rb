@@ -19,7 +19,9 @@ class UsersController < ApplicationController
       user_params
       )
     if @user.save
-    redirect_to user_url(@user)
+      session[:user_id] = @user.id
+      flash[:notice] = "Hurray! Successfully logged in!"
+      redirect_to  user_url(@user)
     else
       render 'new'
     end

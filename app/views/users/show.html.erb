@@ -22,6 +22,15 @@
               <% else %>
                 <%= button_to "Follow", relationships_path, params: {followed_id: @user.id}, class: 'btn btn-success btn-md' %>
               <% end %>
+
+              <% if @user.relationship(current_user) %>
+                <% if @user.id == @user.relationship(current_user).follower_id %>
+                  <div class="my-3">
+                    You are followed by this user.
+                  </div>
+                <% end %>
+              <% end %>
+
               <% else %>  
               <%= link_to "Edit", edit_user_path, type: "button", class: "btn btn-dark" %>
             <% end %> 
@@ -31,7 +40,13 @@
 
     <div class="col-9 ">
     	<h3>activities</h3>
-        <%= render @user.feed%>
+      <% unless @user.feed.empty? %>
+                <%= render @user.feed %>
+            <% else %>
+                <div class="text-center mt-5">
+                    <h1>Nothing to show</h1> 
+                </div>
+            <% end %>
     </div>
    
   </div>

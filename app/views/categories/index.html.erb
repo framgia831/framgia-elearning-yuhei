@@ -2,8 +2,8 @@
 	<div class="mb-5">
 		<h1 class="text-center">Categories</h1>
 	</div>
-
-	<div class="row">
+	<% unless @categories.empty? %>
+    	<div class="row">
 		<table class="table table-hover">
 	    <thead>
 	    	<tr>
@@ -23,17 +23,23 @@
 		            <td><%= category.description %></td>
 		            <td>
 		            	<% if  @categories.include?(category) %>
-		            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block mb-3' %>
+		            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block  btn-info mb-3' %>
 		            	<% else %>
-		            	<%= link_to "result", category_path(category), class: 'btn btn btn-block mb-3' %>
+		            	<%= link_to "result", category_path(category), class: 'btn btn-block mb-3' %>
 		            	<% end %>
 		            </td>
 		        </tr>
 			<% end %>		
 	    </tbody> 
 	    </table>
-	    
-	</div>
+	</div> 
+
+    <% else %>
+        <div class="text-center mt-5">
+            <h1>Nothing to show</h1> 
+        </div>
+    <% end %>    
+	
 	<div class="paginate text-center">
 		<%= paginate @categories_all %>
 	</div>

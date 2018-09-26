@@ -5,9 +5,16 @@ class User < ApplicationRecord
 	has_many :answers, through: :lessons
 	has_many :words, through: :lessons
 
-	has_many :relationships, class_name:  "Relationship",
+	has_many :relationships, class_name:  "Active_relationship",
                              foreign_key: "follower_id",
                              dependent:   :destroy
+
+ 	has_many :relationships, class_name:  "Passive_relationship",
+                             foreign_key: "followed_id",
+                             dependent:   :destroy
+
+ 	has_many :following, through: :active_relationships, source: :followed
+ 	has_many :followers,through: :passive_relationships, source: :follower
 
 
 
@@ -23,13 +30,13 @@ class User < ApplicationRecord
 
   	mount_uploader :image, PictureUploader
 
-  	def followers
-		Relationship.where(followed_id: id)
-	end
+ #  	def followers
+	# 	Relationship.where(followed_id: id)
+	# end
 
-	def following
-		Relationship.where(follower_id: id)
-	end
+	# def following
+	# 	Relationship.where(follower_id: id)
+	# end
 
 	def relationship(other_user)
 		Relationship.find_by(

@@ -1,7 +1,8 @@
 <!-- index.html.erb -->
 <div class="container">
 	<h1 class="text-center ">Users</h1>
-	<div class="row">
+	<% unless @users.empty? %>
+		<div class="row">
 		<% @users.each do |user| %>
 			<div class="card col-sm-6 my-4">
 				<div class="card-body row">
@@ -14,7 +15,13 @@
 				</div>
 			</div>
 		<% end %>	
-	</div>
+		</div>
+
+        <% else %>
+            <div class="text-center mt-5 alert alert-info">
+                <h3>Nothing to show</h3> 
+            </div>
+    <% end %>
 
 	<div class="paginate text-center">
 		<%= paginate @users %>

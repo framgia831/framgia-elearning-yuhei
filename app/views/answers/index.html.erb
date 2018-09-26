@@ -14,6 +14,7 @@
 			<tr>
 		        <th scope="col">#</th>
 		        <th scope="col">word</th>
+		        <th scope="col">your choice</th>
 		        <th scope="col">answer</th>
 		    </tr>
 		</thead>
@@ -30,7 +31,13 @@
 		            <td>
 		            	<%= answer.word.content %>
 		            </td>
-		            <td><%= answer.choice.content %></td>
+		            <td>
+		            	<%= answer.choice.content %>
+		            </td>
+                    <td>
+                    	<%= answer.word.correct_answer if answer.choice.correct == false %>
+                    </td>
+
 		            
 		        </tr>
 			<% end %>		

@@ -5,7 +5,6 @@ class RelationshipsController < ApplicationController
 			followed_id: params[:followed_id]
 			 )
 		relationship.create_activity(user_id: current_user.id)
-
 		redirect_to request.referrer || user_url(params[:followed_id]) 
 	end
 

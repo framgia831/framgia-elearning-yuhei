@@ -8,7 +8,13 @@ class LessonsController < ApplicationController
 	end	
 
 	def word
+		category_first = current_user.categories.first
+		@category_id = params[:category_id] || category_first
+
 		@answers = current_user.answers.page(params[:page]).per(7)
+
+		@answers = Category.all.find(@category_id.to_i).answers
 	end
 
+	
 end

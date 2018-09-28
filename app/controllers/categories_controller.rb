@@ -1,18 +1,16 @@
 class CategoriesController < ApplicationController
 	def index
 		@categories_all = Category.all.page(params[:page]).per(4)
-	
-		if params[:learned] == 1.to_s
+		@learned = params[:learned] || ""
+
+		if @learned == "1"
 			@categories = current_user.categories
-		elsif params[:learned] == 0.to_s
-			@categories = @categories_all - current_user.categories
+		elsif @learned == "0"
+			@categories = Category.where.not(id: current_user.category_ids)
 		else
 			@categories = @categories_all
 		end	
-				
-			
-
-
+		@categories = @categories
 	end
 
 	def show

@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
 	def index
-		@categories_all = Category.all.page(params[:page]).per(4)
+		@categories_all = Category.all
 		@learned = params[:learned] || ""
 
 		if @learned == "1"
@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 		else
 			@categories = @categories_all
 		end	
-		@categories = @categories
+		@categories = @categories.joins(:words).group(:id).page(params[:page]).per(4)
 	end
 
 	def show

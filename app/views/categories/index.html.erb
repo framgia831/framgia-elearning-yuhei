@@ -2,7 +2,24 @@
 	<div class="mb-5">
 		<h1 class="text-center">Categories</h1>
 	</div>
-	<% unless @categories.empty? %>
+	<div class="container mb-3">
+		<ul class="nav nav-pills justify-content-center ">
+			<li class="nav-item">
+				<%= link_to "All", categories_path, 
+							class: "nav-link #{active_status(@learned, nil)}" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Learned", categories_path(learned: 1), 	
+							class: "nav-link #{active_status(@learned, 1)}" %>
+			</li>
+			<li class="nav-item">
+				<%= link_to "Not Learned", categories_path(learned: 0), 	
+							class: "nav-link #{active_status(@learned, 0)}" %>
+			</li>
+		</ul>
+	</div>
+	<% if @categories %>
+		<% unless @categories.empty? %>
     	<div class="row">
 		<table class="table table-hover">
 	    <thead>
@@ -14,7 +31,7 @@
 	        </tr>
 	    </thead>
 	    <tbody>
-			<% @categories_all.each_with_index do |category, i| %>
+			<% @categories.each_with_index do |category, i| %>
 		        <tr>
 		            <th scope="row"><%= i+1 %></th>
 		            <td>
@@ -22,7 +39,7 @@
 		            </td>
 		            <td><%= category.description %></td>
 		            <td>
-		            	<% if  @categories.include?(category) %>
+		            	<% if  (Category.where.not(id: current_user.category_ids)).include?(category) %>
 		            	<%= button_to "start", lessons_path, params: {category_id: category.id}, class: 'btn btn btn-block  btn-info mb-3' %>
 		            	<% else %>
 		            	<%= link_to "result", category_path(category), class: 'btn btn-block mb-3' %>
@@ -32,13 +49,15 @@
 			<% end %>		
 	    </tbody> 
 	    </table>
-	</div> 
+		</div> 
 
-    <% else %>
-        <div class="text-center mt-5">
-            <h1>Nothing to show</h1> 
-        </div>
-    <% end %>    
+	    <% else %>
+	        <div class="text-center mt-5">
+	            <h1>Nothing to show</h1> 
+	        </div>
+	    <% end %>    
+	<% end %>
+	
 	
 	<div class="paginate text-center">
 		<%= paginate @categories_all %>

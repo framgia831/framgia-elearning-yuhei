@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
 		else
 			@categories = @categories_all
 		end	
-		@categories = @categories.page(params[:page]).per(4)
+		@categories = @categories.joins(:words).group(:id).page(params[:page]).per(4)
 	end
 
 	def show

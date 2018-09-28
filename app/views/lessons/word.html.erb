@@ -1,7 +1,7 @@
 <div class="container justify-content-around">
     <div class="container mb-3">
         <%= form_tag(words_path, method: :get) do %>
-            <%= select_tag 'category_id', options_for_select(category_choices, @category_id), onchange: 'this.form.submit()' %>
+            <%= select_tag 'category_id', options_for_select(category_choices, @category_id), onchange: 'this.form.submit()', include_blank: "All" %>
         <% end %>
     </div>
        <div class="row"> 
